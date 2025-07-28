@@ -8,9 +8,9 @@ const RqSuperHeros = () => {
     <div>
       <p>React Query SuperHeros</p>
       {
-        isLoading && <li>Loading...</li>
+        isLoading && <p>Loading...</p>
       }
-      {error && <li>Error: {error.message}</li>}
+      {error && <p>Error: {error.message}</p>}
       <ul>
         {data?.map(hero => (
           <li key={hero.id}>{hero.name}</li>
