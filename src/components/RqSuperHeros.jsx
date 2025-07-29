@@ -1,18 +1,21 @@
 import { useFetchSuperHeros } from "../hooks/useFetchSuperHeros";
 
 const RqSuperHeros = () => {
+
+  const {isLoading, isFetching, error, data, refetch} = useFetchSuperHeros();
+  console.log({isFetching, isLoading});
   
-  const {isLoading, error, data} = useFetchSuperHeros();
-  
+
   return (
     <div>
       <p>React Query SuperHeros</p>
-      {
-        isLoading && <p>Loading...</p>
-      }
       {error && <p>Error: {error.message}</p>}
+      <button onClick={refetch}>Refetch Heros</button>
+      {
+        (isLoading || isFetching) && <p>Loading...</p>
+      }
       <ul>
-        {data?.map(hero => (
+        {!isLoading && !isFetching && data?.map(hero => (
           <li key={hero.id}>{hero.name}</li>
         ))}
       </ul>
